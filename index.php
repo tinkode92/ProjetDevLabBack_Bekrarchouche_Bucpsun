@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TEST</title>
+    <title>Dywiki's Inscription</title>
 </head>
 <body>
 
-<div class="grid grid-cols-2 grid-rows-3">
-    <div class="bg-red-500 row-span-4">
-        FORM
-    </div>
-    <div class="bg-blue-500">2</div>
-    <div class="bg-pink-500">3</div>
-    <div class="bg-purple-500">4</div>
-</div>
+        <div class="flex">
+            <form class="flex flex-col p-4 place-content-center" action="POST">
+                <input type="email" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="email" placeholder="Votre email">
+                <input type="password" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md"  name="password1" placeholder="Votre mot de passe">
+                <input type="password" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="password2" placeholder="Confirmer le mot de passe">
+                <input type="text" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="first_name" placeholder="Votre prénom">
+                <input type="text" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="last_name" placeholder="Votre nom">
+                <p>Déjà inscrit ?<a class="text-[#7BC8FF] px-4" href="login.php">Connectez-vous</a></p>
+                <button type="submit" class="btn" value="Register">Envoyer</button>
+            </form>
+        </div>
 
 
 </body>
