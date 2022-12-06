@@ -18,12 +18,14 @@ require_once 'src/connection.php';
 <!--NAVBAR ELEMENT IN TEMPLATE FOLDER-->
 <?php require_once "src/template/nav.php"?>
 
-<table class="bg-gray-700 border-gray-200" id="categories"></table>
+<div class="flex ">
+    <table class="bg-gray-700 border-gray-200" id="categories"></table>
+    <div class="flex" id="poster"></div>
+</div>
 
 
 
-
-<script src="JS/api.js"></script>
+<script src="JS/api_query_cat.js"></script>
 <script src="JS/script.js"></script>
 </body>
 </html>
