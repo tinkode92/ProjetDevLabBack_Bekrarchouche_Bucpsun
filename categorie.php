@@ -17,12 +17,17 @@ require_once 'src/connection.php';
 <?php require_once "src/template/nav.php"?>
 
 
-<div class="genre_container">
+<div class="genre_container grid gap-0.5">
 
 </div>
 
-<div class="movie_container">
+<div class="movie_container flex flex-wrap gap-8 justify-center py-12">
 
+</div>
+
+<div class="flex gap-x-6 justify-center pb-4" id="page">
+    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" id="prev">Left</button>
+    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" id="next">Right</button>
 </div>
 
 
