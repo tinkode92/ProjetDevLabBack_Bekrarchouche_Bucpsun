@@ -11,16 +11,22 @@ require_once 'src/connection.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Accueil Dywiki's</title>
+    <title>Dywiki's Categories</title>
 </head>
 <body>
-
-<!--NAVBAR ELEMENT IN TEMPLATE FOLDER-->
 <?php require_once "src/template/nav.php"?>
 
 
+<div class="genre_container">
+
+</div>
+
+<div class="movie_container">
+
+</div>
 
 
+<script src="JS/api_query.js"></script>
 <script src="JS/script.js"></script>
 </body>
 </html>
