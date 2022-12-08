@@ -24,3 +24,4 @@ require_once 'src/connection.php';
 <script src="JS/script.js"></script>
 </body>
 </html>
+/* FIX BUG GITHUB */

@@ -1,3 +1,4 @@
+/* FIX BUG GITHUB */
 const api_key = "e63fb2ad752c2e17625b63265a27a32a"
 
 let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key).then(response => response.json()).then(data =>  {
