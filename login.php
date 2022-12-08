@@ -38,4 +38,3 @@ $verification = $connection->connect();
 ?>
 </body>
 </html>
-/* FIX BUG GITHUB */

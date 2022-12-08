@@ -1,4 +1,3 @@
-/* FIX BUG GITHUB */
 const targetEl1 = document.querySelector("#user-dropdown");
 const targetEl2 = document.querySelector("#mobile-menu-2");
 const triggerEl1 = document.querySelector("#user-menu-button");

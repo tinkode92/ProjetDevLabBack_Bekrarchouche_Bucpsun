@@ -55,4 +55,3 @@ class Connection
     }
 }
 
-/* FIX BUG GITHUB */
