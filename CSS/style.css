@@ -8,4 +8,6 @@ button {
     border-bottom: 1px solid black;
 }
 
-
+body {
+    background-color: bisque ;
+}

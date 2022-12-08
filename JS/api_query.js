@@ -3,36 +3,44 @@ const api_key = "e63fb2ad752c2e17625b63265a27a32a"
 let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key).then(response => response.json()).then(data =>  {
     for (let r of data.genres) {
         let button = document.createElement('button');
-        button.innerHTML = r['name'];
-        button.classList = 'w-[125px] bg-gray-700 text-white p-1 rounded-full';
+            button.innerHTML = r['name'];
+            button.classList = 'bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ease-in-out duration-150';
 
         button.addEventListener('click', ()=> {
             getMovieGenre(r['id'])
+            let genre_title= document.querySelector('#H1_genre')
+            genre_title.innerHTML = 'Categorie: ' + r['name']
         })
-        console.log(r)
+
+
         document.querySelector('.genre_container').appendChild(button)
     }
+
 })
 
 let containerMovies = document.querySelector('.movie_container');
 
-let PaginationPrev = document.querySelector(".prev")
-let PaginationNext = document.querySelector(".next")
+let PaginationPrev = document.querySelector("#prev")
+let PaginationNext = document.querySelector("#next")
 let page_number = document.querySelector("#page")
-
-
 let pagination = 1
 
+
+
+
+
 function getMovieGenre(genre){
-    fetch('https://api.themoviedb.org/3/discover/movie?api_key='+api_key+'&with_genres='+genre)
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key='+api_key+'&with_genres='+genre+"&page="+pagination)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             if(containerMovies.innerHTML !== null){
                 containerMovies.innerHTML = '';
             }
-
-
-
+            PaginationNext.addEventListener('click', () => {
+                pagination++
+                containerMovies.innerHTML = getMovieGenre(genre, pagination)
+            });
             data['results'].forEach(movie => {
                 let card = document.createElement('div')
                     containerMovies.appendChild(card)
@@ -56,5 +64,4 @@ function getMovieGenre(genre){
 
         })
 }
-
 
