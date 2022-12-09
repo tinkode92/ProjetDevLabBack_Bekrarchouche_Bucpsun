@@ -26,7 +26,13 @@ require_once 'src/connection.php';
 
 </div>
 
+
+
 <div class="pt-4">
+    <div class="flex gap-x-6 justify-center pb-4" id="page">
+        <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="prev">Prev</button>
+        <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="next">Next</button>
+    </div>
     <h1 class="font-bold text-center" id="H1_genre">
 
     </h1>
@@ -38,10 +44,7 @@ require_once 'src/connection.php';
 
 
 
-<div class="flex gap-x-6 justify-center pb-4" id="page">
-    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:border-b-0 ease-in-out duration-150" id="prev">Prev</button>
-    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:border-b-0 ease-in-out duration-150" id="next">Next</button>
-</div>
+
 
 <script src="JS/api_query.js"></script>
 <script src="JS/script.js"></script>

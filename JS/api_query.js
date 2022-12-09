@@ -1,3 +1,6 @@
+
+
+
 const api_key = "e63fb2ad752c2e17625b63265a27a32a"
 
 let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=" + api_key).then(response => response.json()).then(data =>  {
@@ -12,6 +15,11 @@ let genres = fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=" + ap
             genre_title.innerHTML = 'Categorie: ' + r['name']
         })
 
+        PaginationNext.addEventListener('click', ()=> {
+            button.addEventListener('click', ()=> {
+                getMovieGenre(r['id']);
+            })
+        })
 
         document.querySelector('.genre_container').appendChild(button)
     }
@@ -25,9 +33,17 @@ let PaginationNext = document.querySelector("#next")
 let page_number = document.querySelector("#page")
 let pagination = 1
 
+PaginationNext.addEventListener('click', () => {
+    pagination++
+    containerMovies.innerHTML = getMovieGenre()
+});
 
-
-
+PaginationPrev.addEventListener('click', () => {
+    if (pagination > 0) {
+        pagination--
+        containerMovies.innerHTML = getMovieGenre()
+    }
+});
 
 function getMovieGenre(genre){
     fetch('https://api.themoviedb.org/3/discover/movie?api_key='+api_key+'&with_genres='+genre+"&page="+pagination)
@@ -37,14 +53,11 @@ function getMovieGenre(genre){
             if(containerMovies.innerHTML !== null){
                 containerMovies.innerHTML = '';
             }
-            PaginationNext.addEventListener('click', () => {
-                pagination++
-                containerMovies.innerHTML = getMovieGenre(genre, pagination)
-            });
+
             data['results'].forEach(movie => {
                 let card = document.createElement('div')
                     containerMovies.appendChild(card)
-                    card.classList = 'w-[250px] bg-gray-300 rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center'
+                    card.classList = 'w-[250px] bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center'
 
                 let img = document.createElement('img')
                     img.classList = 'w-[250px] h-[350px] object-cover rounded-t-lg';
@@ -58,8 +71,13 @@ function getMovieGenre(genre){
 
                 let popularity = document.createElement('p');
                     popularity.innerHTML = movie['popularity'] + ' views';
-                    popularity.classList = "text-indigo-600 text-center py-1"
+                    popularity.classList = "text-yellow-600 text-center py-1"
                     card.appendChild(popularity);
+
+                let genre = document.createElement('p' );
+                    genre.innerHTML = movie['genre_ids'];
+                    genre.classList = "text-yellow-600 text-center py-1"
+                    card.appendChild(genre);
             })
 
         })
