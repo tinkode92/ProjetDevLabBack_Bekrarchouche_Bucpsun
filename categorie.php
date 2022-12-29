@@ -29,10 +29,6 @@ require_once 'src/connection.php';
 
 
 <div class="pt-4">
-    <div class="flex gap-x-6 justify-center pb-4" id="page">
-        <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="prev">Prev</button>
-        <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="next">Next</button>
-    </div>
     <h1 class="font-bold text-center" id="H1_genre">
 
     </h1>
@@ -41,8 +37,6 @@ require_once 'src/connection.php';
 <div class="movie_container flex flex-wrap gap-8 justify-center py-12">
 
 </div>
-
-
 
 
 
