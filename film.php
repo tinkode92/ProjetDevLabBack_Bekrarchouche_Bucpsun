@@ -52,6 +52,7 @@ require_once 'src/connection.php';
 <script src="JS/script.js"></script>
 <script type="text/javascript">
 
+    const containerMovies = document.querySelector('.movie_container');
     let info = document.querySelector('.info_container')
     let title_container = document.querySelector('.title')
     let synop_container = document.querySelector('.synopsis')

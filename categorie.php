@@ -22,19 +22,7 @@ require_once 'src/connection.php';
 
     <div class="genre_container flex gap-2 flex-wrap justify-center py-2 px-20">
 
-<<<<<<< Updated upstream
-</div>
-
-
-
-<div class="pt-4">
-    <h1 class="font-bold text-center" id="H1_genre">
-
-    </h1>
-</div>
-=======
     </div>
->>>>>>> Stashed changes
 
     <div class="pt-4">
         <div class="flex gap-x-6 justify-center pb-4" id="page">
@@ -48,10 +36,6 @@ require_once 'src/connection.php';
 
     <div class="movie_container flex flex-wrap gap-8 justify-center py-12">
 
-<<<<<<< Updated upstream
-<script src="JS/api_query.js"></script>
-<script src="JS/script.js"></script>
-=======
     </div>
 
     <script src="JS/api_query.js"></script>
@@ -59,6 +43,5 @@ require_once 'src/connection.php';
     <script src="JS/genres.js"></script>
     <script src="JS/script.js"></script>
 
->>>>>>> Stashed changes
 </body>
 </html>

@@ -15,14 +15,9 @@ function displayMovies(movies) {
             title.classList = "text-center py-1"
             card.appendChild(title);
 
-        const popularity = document.createElement('p');
-            popularity.innerHTML = movie['popularity'] + ' views';
-            popularity.classList = "text-yellow-600 text-center py-1"
-            card.appendChild(popularity);
-
-        const genre = document.createElement('p' );
-            genre.innerHTML = movie['genre_ids'];
-            genre.classList = "text-yellow-600 text-center py-1"
-            card.appendChild(genre);
+        let link = document.createElement('a');
+        link.href = "film.php?" + "&id=" + movie['id'] + "&name=" + movie['title']
+        link.classList = "h-full w-full absolute"
+        card.appendChild(link)
     });
 }
