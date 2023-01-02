@@ -22,21 +22,33 @@ getGenres().then(data =>  {
 
 const PaginationPrev = document.querySelector("#prev")
 const PaginationNext = document.querySelector("#next")
+const LastPage = document.querySelector("#before")
 const CurrentPage = document.querySelector("#current")
+const AfterPage = document.querySelector('#after')
 const containerMovies = document.querySelector('.movie_container');
+let avant = 0
 let pagination = 1
+let apres = 2
 let lastGenre;
 
 PaginationNext.addEventListener('click', () => {
     pagination++
-    CurrentPage.innerHTML = pagination
+    avant++
+    apres++
     displayMoviesForGenre()
+    CurrentPage.innerHTML = pagination
+    LastPage.innerHTML = avant
+    AfterPage.innerHTML = apres
 });
 
 PaginationPrev.addEventListener('click', () => {
     if (pagination > 0) {
         pagination--
+        avant--
+        apres--
         displayMoviesForGenre()
+        LastPage.innerHTML = avant
+        AfterPage.innerHTML = apres
         CurrentPage.innerHTML = pagination
     }
 });
