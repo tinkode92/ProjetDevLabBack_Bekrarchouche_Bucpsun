@@ -22,13 +22,14 @@ getGenres().then(data =>  {
 
 const PaginationPrev = document.querySelector("#prev")
 const PaginationNext = document.querySelector("#next")
-const page_number = document.querySelector("#page")
+const CurrentPage = document.querySelector("#current")
 const containerMovies = document.querySelector('.movie_container');
 let pagination = 1
 let lastGenre;
 
 PaginationNext.addEventListener('click', () => {
     pagination++
+    CurrentPage.innerHTML = pagination
     displayMoviesForGenre()
 });
 
@@ -36,6 +37,7 @@ PaginationPrev.addEventListener('click', () => {
     if (pagination > 0) {
         pagination--
         displayMoviesForGenre()
+        CurrentPage.innerHTML = pagination
     }
 });
 
