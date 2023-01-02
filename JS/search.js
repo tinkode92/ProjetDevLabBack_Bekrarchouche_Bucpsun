@@ -1,6 +1,6 @@
 const PaginationPrev = document.querySelector("#prev")
 const PaginationNext = document.querySelector("#next")
-const page_number = document.querySelector("#page")
+const CurrentPage = document.querySelector("#current")
 const searchInput = document.getElementById('search-input');
 const containerMovies = document.querySelector('.movie_container');
 
@@ -14,12 +14,14 @@ displayMoviesForSearch();
 PaginationNext.addEventListener('click', () => {
     pagination++
     displayMoviesForSearch()
+    CurrentPage.innerHTML = pagination
 });
 
 PaginationPrev.addEventListener('click', () => {
     if (pagination > 0) {
         pagination--
         displayMoviesForSearch()
+        CurrentPage.innerHTML = pagination
     }
 });
 
