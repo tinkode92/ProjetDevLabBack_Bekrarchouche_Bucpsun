@@ -51,6 +51,9 @@ PaginationPrev.addEventListener('click', () => {
         AfterPage.innerHTML = apres
         CurrentPage.innerHTML = pagination
     }
+    if (avant < 0) {
+        LastPage.innerHTML = " "
+    }
 });
 
 function displayMoviesForGenre(genre = lastGenre) {

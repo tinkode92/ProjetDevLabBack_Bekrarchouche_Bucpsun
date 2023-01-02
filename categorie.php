@@ -27,9 +27,9 @@ require_once 'src/connection.php';
     <div class="pt-4">
         <div class="flex gap-x-6 justify-center pb-4" id="page">
             <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="prev">Prev</button>
-            <p class="font-normal flex items-center text-sm" id="before">0</p>
+            <p class="font-medium flex items-center text-sm" id="before">0</p>
             <p class="font-bold flex items-center text-xl" id="current">1</p>
-            <p class="font-normal flex items-center text-sm" id="after">2</p>
+            <p class="font-medium flex items-center text-sm" id="after">2</p>
             <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" id="next">Next</button>
         </div>
         <h1 class="font-bold text-center" id="H1_genre">
