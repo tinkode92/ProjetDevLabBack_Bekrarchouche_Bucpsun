@@ -37,7 +37,7 @@ require_once 'src/connection.php';
         </h1>
     </div>
 
-    <div class="movie_container flex flex-wrap gap-8 justify-center py-12">
+    <div class="movie_container flex flex-wrap gap-8 justify-center py-12 2xl:px-[130px] px-8">
 
     </div>
 
@@ -45,6 +45,5 @@ require_once 'src/connection.php';
     <script src="JS/movies.js"></script>
     <script src="JS/genres.js"></script>
     <script src="JS/script.js"></script>
-
 </body>
 </html>

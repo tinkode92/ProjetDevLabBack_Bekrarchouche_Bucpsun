@@ -6,7 +6,7 @@ function getGenres() {
 }
 
 function getMoviesForGenre(genre, pagination) {
-    return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=${genre}&page=${pagination}` + '&language=fr-FR')
+    return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=${genre}&page=${pagination}` + '&language=fr-FR' + "&sort_by=popularity.desc")
         .then(response => response.json())
 }
 
