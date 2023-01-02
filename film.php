@@ -80,6 +80,9 @@ require_once 'src/connection.php';
             let img = document.createElement('img')
             img.classList = 'w-[300px] h-full object-cover rounded-l-lg rounded-r-lg';
             img.src = 'https://image.tmdb.org/t/p/w500'+ data['poster_path'];
+            if (data['poster_path'] === null) {
+                img.src = "src/assets/img/not_found.png"
+            }
             card.appendChild(img);
 
             let title = document.createElement('p');

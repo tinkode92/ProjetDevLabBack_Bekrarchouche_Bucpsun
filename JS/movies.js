@@ -8,6 +8,9 @@ function displayMovies(movies) {
         const img = document.createElement('img')
             img.classList = 'w-[250px] h-[350px] object-cover rounded-t-lg';
             img.src = 'https://image.tmdb.org/t/p/w500'+movie['poster_path'];
+            if (movie['poster_path'] === null) {
+                img.src = "src/assets/img/not_found.png"
+            }
             card.appendChild(img);
 
         const title = document.createElement('p');
