@@ -2,7 +2,9 @@
 session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
+require_once 'src/album_movie.php'
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -43,8 +45,35 @@ require_once 'src/connection.php';
         <div class="note">
 
         </div>
+
+
+        <form method="post">
+            <div class="flex flex-col">
+                <select name="id_film">
+                    <option value="">Choisir un album</option>
+                    <?php $connection = New Connection();
+                    $album = $connection->findAlbum($_SESSION["user_id"]);
+
+                    foreach ($album as $alb) {
+                        if ($alb['status'] === 0) {
+                            $alb['status'] = "Public";
+                        } else {
+                            $alb['status'] = "Privée";
+                        }
+                        ?>
+
+                        <option value="<?php echo $alb['id'] ?>"><?php echo $alb['name']?>  (<?php echo $alb['status']?>)</option>
+                    <?php }
+
+                    ?>
+                </select>
+                <button name="album" value="<?php echo $_GET['id'] ?>" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150 mt-3" type="submit">Ajouter à un album</button>
+            </div>
+        </form>
+
     </div>
 </div>
+
 
 
 
@@ -152,5 +181,27 @@ require_once 'src/connection.php';
         })
 
 </script>
+<?php
+if ($_POST) {
+    $movie = new Movie(
+        $_POST['album'],
+        $_POST['id_film']
+    );
+
+    if ($movie->verify()) {
+
+        $connection = new Connection();
+        $result = $connection->InsertMovie($movie);
+
+
+        if ($result) {
+            echo '<h2 class="text-center font-semibold text-xl">Film ajouté à votre album !</h2>';
+        } else {
+            echo '<h2 class="text-center font-semibold text-xl">Internal error 🥲</h2>';
+        }
+    }
+    exit();
+}
+?>
 </body>
 </html>

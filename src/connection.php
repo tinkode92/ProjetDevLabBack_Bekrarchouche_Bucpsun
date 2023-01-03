@@ -24,6 +24,44 @@ class Connection
         ]);
     }
 
+    public function InsertAlbum(Album $album): bool
+    {
+        $query = 'INSERT INTO album (name, status, user_id)
+                  VALUES (?, ?, ?)';
+
+        $stmt = $this->pdo->prepare($query);
+
+        return $stmt->execute([
+            $album->name,
+            $album->status,
+            $_SESSION['user_id'],
+        ]);
+    }
+
+    public function InsertMovie(Movie $movie): bool
+    {
+        $query = 'INSERT INTO album_movies (id_api, album_id)
+                  VALUES (?, ?)';
+
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            $movie->id_api,
+            $movie->album_id,
+        ]);
+    }
+
+    public function findAlbum($id): array
+    {
+        $query = "SELECT * FROM album WHERE user_id=?";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(array($id));
+
+        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     public function connect()
     {
 
