@@ -24,3 +24,5 @@ function displayMovies(movies) {
         card.appendChild(link)
     });
 }
+
+const containerAlbumMovie = document.querySelector(".container_album_movie")

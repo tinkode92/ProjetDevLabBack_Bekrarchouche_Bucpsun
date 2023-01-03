@@ -60,7 +60,37 @@ class Connection
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function findAlbumMovie($id): array
+    {
+        $query = "SELECT * FROM album_movies WHERE album_id=?";
 
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(array($id));
+
+        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteMovie(int $id): bool
+    {
+        $query = 'DELETE FROM album_movies
+                  WHERE id = :id';
+        $statement = $this->pdo->prepare($query);
+
+        return $statement->execute([
+            'id' => $id,
+        ]);
+    }
+
+    public function deleteAlbum(int $id): bool
+    {
+        $query = 'DELETE FROM album
+                  WHERE id = :id';
+        $statement = $this->pdo->prepare($query);
+
+        return $statement->execute([
+            'id' => $id,
+        ]);
+    }
 
     public function connect()
     {
