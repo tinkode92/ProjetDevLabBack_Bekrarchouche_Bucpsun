@@ -9,9 +9,9 @@
 
 DROP TABLE IF EXISTS `album_movies`;
 CREATE TABLE `album_movies` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `id_api` int NOT NULL,
-  `album_id` int DEFAULT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_api` int unsigned NOT NULL,
+  `album_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`),
   CONSTRAINT `album_movies_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`)
