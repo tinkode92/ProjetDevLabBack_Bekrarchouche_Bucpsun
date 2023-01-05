@@ -24,6 +24,16 @@ class Connection
         ]);
     }
 
+    public function findUser(): array
+    {
+        $query = "SELECT * FROM user";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(array());
+
+        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function InsertAlbum(Album $album): bool
     {
         $query = 'INSERT INTO album (name, status, user_id)
