@@ -114,10 +114,10 @@ class Connection
                     $_SESSION['user_last_name'] = $fetch['last_name'];
                     header("location: home.php");
                 } else {
-                    echo '<h2 class="msg">Email ou mot de passe invalide</h2>';
+                    echo '<h2 class="flex justify-center">Email ou mot de passe invalide</h2>';
                 }
             } else {
-                echo '<h2 class="msg">Veuillez entrer vos informations dans le champs ci-dessus</h2>';
+                echo '<h2 class="flex justify-center">Veuillez entrer vos informations dans le champs ci-dessus</h2>';
             }
         }
     }
