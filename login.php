@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div class="flex">
+    <div class="flex fixed top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
         <form class="flex flex-col p-4 place-content-center" method="post">
             <input type="email" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="email" placeholder="Votre email">
             <input type="password" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md"  name="password" placeholder="Votre mot de passe">
