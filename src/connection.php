@@ -93,6 +93,23 @@ class Connection
         return dirname($_SERVER['HTTP_REFERER']) . '/acceptInvite.php?id=' . $id;
     }
 
+
+    public function acceptInvite($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT album_id FROM album_invites WHERE id=? AND to_id=?");
+        $stmt->execute(array($id, $_SESSION["user_id"]));
+        $album_id = $stmt->fetchColumn(0);
+        
+        // invitation non destiné à l'utilisateur
+        if (!$album_id) die("401 Non authorisé");
+
+        $stmt = $this->pdo->prepare("INSERT INTO album_shares (user_id, album_id) VALUES (?, ?)");
+        $stmt->execute(array($_SESSION["user_id"], $album_id));
+
+        $stmt = $this->pdo->prepare("DELETE FROM album_invites WHERE id = ?");
+        $stmt->execute(array($id));
+    }
+
     public function deleteMovie(int $id): bool
     {
         $query = 'DELETE FROM album_movies
@@ -119,7 +136,6 @@ class Connection
             'id' => $id,
         ]);
     }
-
 
     public function connect()
     {
