@@ -62,10 +62,8 @@ class Connection
 
     public function findAlbum($id): array
     {
-        $query = "SELECT * FROM album WHERE user_id=?";
-
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute(array($id));
+        $stmt = $this->pdo->prepare("SELECT A.* FROM album A LEFT JOIN album_shares S ON A.id = S.album_id WHERE A.user_id = ? OR S.user_id = ?");
+        $stmt->execute(array($id, $id));
 
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
