@@ -93,14 +93,20 @@ class Connection
 
     public function deleteAlbum(int $id): bool
     {
-        $query = 'DELETE FROM album
-                  WHERE id = :id';
+        $query = 'DELETE FROM album_movies WHERE album_id = :id';
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([
+            'id' => $id,
+        ]);
+
+        $query = 'DELETE FROM album WHERE id = :id';
         $statement = $this->pdo->prepare($query);
 
         return $statement->execute([
             'id' => $id,
         ]);
     }
+
 
     public function connect()
     {

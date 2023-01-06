@@ -45,15 +45,15 @@
 
 
             if ($result) {
-                echo '<h2 class="msg">Vous êtes inscrit !</h2>';
+                echo '<h2 class="flex justify-center">Vous êtes inscrit !</h2>';
             } else {
-                echo '<h2 class="msg">Erreur interne 🥲</h2>';
+                echo '<h2 class="flex justify-center">Erreur interne 🥲</h2>';
             }
         } else {
-            echo '<h2 class="msg">Il manque des informations OU le mot passe confirmé est différent de celui entrer</h2>';
+            echo '<h2 class="flex justify-center">Il manque des informations OU le mot passe confirmé est différent de celui entrer</h2>';
         }
 
-        header('Refresh: 8, index.php');
+        header('Refresh: 3, index.php');
         exit();
 
     }

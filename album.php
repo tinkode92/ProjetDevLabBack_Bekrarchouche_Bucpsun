@@ -3,9 +3,30 @@ session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
 require_once 'src/ALBUM.php';
+if (isset($_POST['submit'])) {
+    $album = new Album(
+        $_POST['album_name'],
+        $_POST['status'],
+    );
 
+    if ($album->verify()) {
+
+        $connection = new Connection();
+        $result = $connection->InsertAlbum($album);
+
+
+        if ($result) {
+            echo '<h2 class="flex items-center">Album ajouté !</h2>';
+        } else {
+            echo '<h2 class="flex items-center">Malheuresement, nous avons constaté une erreur...</h2>';
+        }
+    } else {
+        echo '<h2 class="flex items-center">Veuillez mettre un nom à votre album</h2>';
+    }
+    header("location: album.php");
+    exit;
+}
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,10 +35,10 @@ require_once 'src/ALBUM.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Dywiki's Album></title>
+    <title>Dywiki's Album</title>
 </head>
 <body>
-<?php require_once "src/template/nav.php"?>
+<?php require_once"src/template/nav.php"?>
 
 <div class="flex flex-wrap">
     <form class="flex flex-col p-4 place-content-center" method="post">
@@ -38,28 +59,7 @@ require_once 'src/ALBUM.php';
         <button name="submit" type="submit" class="bg-[#F3F3F3] drop-shadow-md rounded-full p-1 mt-2">Créer l'album</button>
     </form>
     <?php
-    if ($_POST) {
-        $album = new Album(
-            $_POST['album_name'],
-            $_POST['status'],
-        );
 
-        if ($album->verify()) {
-
-            $connection = new Connection();
-            $result = $connection->InsertAlbum($album);
-
-
-            if ($result) {
-                echo '<h2 class="flex items-center">Album ajouté !</h2>';
-            } else {
-                echo '<h2 class="flex items-center">Malheuresement, nous avons constaté une erreur...</h2>';
-            }
-        } else {
-            echo '<h2 class="flex items-center">Veuillez mettre un nom à votre album</h2>';
-        }
-        exit();
-    }
     ?>
     <div class="flex flex-wrap gap-8 justify-center py-12 2xl:px-[130px] px-8">
         <?php $connection = New Connection();

@@ -70,6 +70,11 @@ foreach ($movie as $mov) {
                 deletee.classList = "z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg"
                 deletee.innerHTML = "Supprimer"
                 card.appendChild(deletee)
+
+                if(containerAlbumMovie = null) {
+
+                }
+
             })
     </script>
 <?php }

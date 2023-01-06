@@ -25,4 +25,4 @@ function displayMovies(movies) {
     });
 }
 
-const containerAlbumMovie = document.querySelector(".container_album_movie")
+let containerAlbumMovie = document.querySelector(".container_album_movie")
