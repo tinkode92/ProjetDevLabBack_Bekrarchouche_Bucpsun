@@ -90,7 +90,7 @@ class Connection
         $stmt->execute(array($_SESSION["user_id"], $to_id, $album_id));
         $id = $this->pdo->lastInsertId();
 
-        return dirname($_SERVER['HTTP_REFERER']) . 'acceptInvite.php?id=' . $id;
+        return dirname($_SERVER['HTTP_REFERER']) . '/acceptInvite.php?id=' . $id;
     }
 
     public function deleteMovie(int $id): bool
