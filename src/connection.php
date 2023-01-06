@@ -62,6 +62,8 @@ class Connection
 
     public function findAlbum($id): array
     {
+        // sélectionner à la fois les albums possédés par l'utilisateurs et ceux chargés avec lui
+        // https://fr.m.wikipedia.org/wiki/Fichier:SQL_Joins.svg
         $stmt = $this->pdo->prepare("SELECT A.* FROM album A LEFT JOIN album_shares S ON A.id = S.album_id WHERE A.user_id = ? OR S.user_id = ?");
         $stmt->execute(array($id, $id));
 
@@ -80,30 +82,35 @@ class Connection
 
     public function invite($album_id, $user_mail): string | null
     {
+        // verifier que l'album existe bien
         $stmt = $this->pdo->prepare("SELECT COUNT(id) FROM album WHERE id=? AND user_id=?");
         $stmt->execute(array($album_id, $_SESSION["user_id"]));
         
         // l'utilisateur ne possède pas d'album avec cette id
         if ($stmt->rowCount() < 1) die("401 Non authorisé");
 
+        // chercher l'invité
         $stmt = $this->pdo->prepare("SELECT id FROM user WHERE email=?");
         $stmt->execute(array($user_mail));
 
         $to_id = $stmt->fetchColumn(0);
         if (!$to_id) return null;
 
+        // creer l'invitation
         $query = "INSERT INTO album_invites (from_id, to_id, album_id) VALUES (?, ?, ?)";
 
         $stmt = $this->pdo->prepare($query);
         $stmt->execute(array($_SESSION["user_id"], $to_id, $album_id));
         $id = $this->pdo->lastInsertId();
 
+        // former le lien d'invitation en fonction de l'url du serveur
         return dirname($_SERVER['HTTP_REFERER']) . '/acceptInvite.php?id=' . $id;
     }
 
 
     public function acceptInvite($id)
     {
+        // vérifier que l'invitation existe bien
         $stmt = $this->pdo->prepare("SELECT album_id FROM album_invites WHERE id=? AND to_id=?");
         $stmt->execute(array($id, $_SESSION["user_id"]));
         $album_id = $stmt->fetchColumn(0);
@@ -111,9 +118,11 @@ class Connection
         // invitation non destiné à l'utilisateur
         if (!$album_id) die("401 Non authorisé");
 
+        // ajouter l'album dans les albums partagés
         $stmt = $this->pdo->prepare("INSERT INTO album_shares (user_id, album_id) VALUES (?, ?)");
         $stmt->execute(array($_SESSION["user_id"], $album_id));
 
+        // supprimer l'invitation maintenant obsolète
         $stmt = $this->pdo->prepare("DELETE FROM album_invites WHERE id = ?");
         $stmt->execute(array($id));
     }
