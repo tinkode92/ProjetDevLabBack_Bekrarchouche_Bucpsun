@@ -70,14 +70,27 @@ class Connection
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findAlbumMovie($id): array
+    public function invite($album_id, $user_mail): string | null
     {
-        $query = "SELECT * FROM album_movies WHERE album_id=?";
+        $stmt = $this->pdo->prepare("SELECT COUNT(id) FROM album WHERE id=? AND user_id=?");
+        $stmt->execute(array($album_id, $_SESSION["user_id"]));
+        
+        // l'utilisateur ne possède pas d'album avec cette id
+        if ($stmt->rowCount() < 1) die("401 Non authorisé");
+
+        $stmt = $this->pdo->prepare("SELECT id FROM user WHERE email=?");
+        $stmt->execute(array($user_mail));
+
+        $to_id = $stmt->fetchColumn(0);
+        if (!$to_id) return null;
+
+        $query = "INSERT INTO album_invites (from_id, to_id, album_id) VALUES (?, ?, ?)";
 
         $stmt = $this->pdo->prepare($query);
-        $stmt->execute(array($id));
+        $stmt->execute(array($_SESSION["user_id"], $to_id, $album_id));
+        $id = $this->pdo->lastInsertId();
 
-        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return dirname($_SERVER['HTTP_REFERER']) . 'acceptInvite.php?id=' . $id;
     }
 
     public function deleteMovie(int $id): bool
