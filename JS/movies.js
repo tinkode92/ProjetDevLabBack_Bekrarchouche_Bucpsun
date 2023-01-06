@@ -25,4 +25,9 @@ function displayMovies(movies) {
     });
 }
 
-let containerAlbumMovie = document.querySelector(".container_album_movie")
+let containerAlbumMovie = document.querySelector(".container_album_movie");
+let noFilm = document.createElement("p");
+if (containerAlbumMovie.innerHTML.trim() === "") {
+    noFilm.innerHTML = "Pas de film ajouté pour le moment";
+    containerAlbumMovie.appendChild(noFilm);
+}

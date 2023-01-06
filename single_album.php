@@ -71,8 +71,8 @@ foreach ($movie as $mov) {
                 deletee.innerHTML = "Supprimer"
                 card.appendChild(deletee)
 
-                if(containerAlbumMovie = null) {
-
+                if (containerAlbumMovie.children.length > 0) {
+                    containerAlbumMovie.removeChild(noFilm);
                 }
 
             })
