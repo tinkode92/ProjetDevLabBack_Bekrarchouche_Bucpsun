@@ -29,7 +29,7 @@
         <div class="flex items-center">
             <button type="button" class="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dark:bg-white" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Profile menu</span>
-                <img class="w-8 h-8 rounded-full" src="src/assets/img/usser.png" alt="user photo">
+                <img class="w-8 h-8 rounded-full" src="src/assets/img/<?php echo $_SESSION['img']?>" alt="user photo">
             </button>
             <!-- Menu profile -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-0 mt-16 right-0 max-md:mr-4 2xl:mr-6" id="user-dropdown">

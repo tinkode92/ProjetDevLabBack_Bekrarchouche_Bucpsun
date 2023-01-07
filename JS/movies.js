@@ -27,6 +27,7 @@ function displayMovies(movies) {
 
 let containerAlbumMovie = document.querySelector(".container_album_movie");
 let noFilm = document.createElement("p");
+noFilm.classList = "font-semibold"
 if (containerAlbumMovie.innerHTML.trim() === "") {
     noFilm.innerHTML = "Pas de film ajouté pour le moment";
     containerAlbumMovie.appendChild(noFilm);

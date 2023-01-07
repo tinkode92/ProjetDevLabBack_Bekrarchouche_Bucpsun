@@ -31,21 +31,23 @@ require_once 'src/connection.php';
 <script src="JS/movies.js"></script>
 <script src="JS/search.js"></script>
 <script src="JS/script.js"></script>
-<?php $connection = New Connection();
-$movie = $connection->findAlbumMovie($_GET['id']);
+<script type="text/javascript">
+    <?php $connection = New Connection();
+    $movie = $connection->findAlbumMovie($_GET['id']);
 
-foreach ($movie as $mov) {
+    foreach ($movie as $mov) {
 
     ?>
-    <script type="text/javascript">
-        fetch('https://api.themoviedb.org/3/movie/' + <?php echo $mov['id_api'] ?> + '?api_key='+api_key+'&language=fr-FR')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+    fetch('https://api.themoviedb.org/3/movie/' + <?php echo $mov['id_api'] ?> + '?api_key='+api_key+'&language=fr-FR')
+        .then(response => response.json())
+        .then(data => {
+
+
+
 
                 let card = document.createElement('div')
                 containerAlbumMovie.appendChild(card)
-                card.classList = 'w-[250px] bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center'
+                card.classList = 'w-[250px] bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all'
 
                 const img = document.createElement('img')
                 img.classList = 'w-[250px] h-[350px] object-cover rounded-t-lg';
@@ -76,9 +78,10 @@ foreach ($movie as $mov) {
                 }
 
             })
-    </script>
+
 <?php }
 
 ?>
+</script>
 </body>
 </html>

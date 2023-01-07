@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
             $alb['status'] = "Privée";
         }
         ?>
-            <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center">
+            <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all">
                 <p class="flex items-center text-center">Nom: <?php echo $alb['name']?></p>
                 <p class="flex items-center text-center">Status: <?php echo $alb['status']?></p>
                 <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>"></a>

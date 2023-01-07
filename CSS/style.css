@@ -11,3 +11,7 @@ button {
 body {
     background-color: bisque ;
 }
+
+.border {
+    border: 3px solid black;
+}

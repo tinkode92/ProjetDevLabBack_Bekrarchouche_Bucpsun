@@ -13,6 +13,7 @@ require_once 'src/ALBUM.php';
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Dywiki's <?php echo $_SESSION["user_name"]?></title>
 </head>
@@ -21,9 +22,32 @@ require_once 'src/ALBUM.php';
 
 <div class="flex justify-center mt-16">
     <div class="flex justify-center flex-col py-5 px-6">
-        <div class="flex justify-center">
-            <img src="src/assets/img/usser.png" alt="image-profile" class= "w-[100px] object-cover rounded-full drop-shadow-xl">
+        <div class="relative">
+            <div class="flex justify-center">
+                <img src="src/assets/img/<?php echo $_SESSION['img']?>" alt="image-profile" class= "w-[100px] object-cover rounded-full drop-shadow-xl">
+            </div>
+            <form method="post" class="absolute left-1/2 text-center cursor-pointer" enctype="multipart/form-data">
+                <div class="absolute bottom-0 ml-[15px] mt-[5px] bg-white w-[32px] h-[32px] text-center rounded-full text-center leading-8 border">
+                    <input class="scale-[1] opacity-0 absolute" type="file" id="update_img" name="" accept="png/jpeg/jpg">
+                    <i class="fa fa-camera cursor-pointer"></i>
+                </div>
+            </form>
+            <button type="submit">Changer</button>
         </div>
+        <?php
+        if ($_POST) {
+            $userId = $_SESSION["user_id"];
+            $newImage = $_FILES["image"];
+            $connection = new Connection();
+            $result = $connection->changeImg($userId,$newImage);
+
+            if ($result) {
+                echo "L'image de profil a été mise à jour avec succès !";
+            } else {
+                echo "Une erreur s'est produite lors de la mise à jour de l'image de profil.";
+            }
+        }
+        ?>
 
         <div class="flex flex-col my-4">
             <h1 class="text-center font-semibold text-xl"><?php echo $_SESSION["user_name"]?> <?php echo $_SESSION["user_last_name"]?></h1>

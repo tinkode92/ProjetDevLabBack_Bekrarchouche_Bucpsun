@@ -11,8 +11,11 @@ class Connection
 
     public function insert(User $user): bool
     {
-        $query = 'INSERT INTO user (email, password, first_name, last_name)
-                  VALUES (:email, :password, :first_name, :last_name)';
+
+        $defaultImage = "usser.png";
+
+        $query = 'INSERT INTO user (email, password, first_name, last_name, img_profile)
+                  VALUES (:email, :password, :first_name, :last_name, :img_profile)';
 
         $statement = $this->pdo->prepare($query);
 
@@ -21,7 +24,28 @@ class Connection
             'password' => md5($user->password),
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
+            'img_profile' => $defaultImage,
         ]);
+    }
+
+    public function changeImg(int $userId, string $newImg): bool {
+
+        $targetDir = "src/assets/img/";
+        $targetFile = $targetDir . basename($newImg["name"]);
+
+        if (move_uploaded_file($newImg["tmp_name"], $targetFile)) {
+
+            $query = 'UPDATE user SET img_profile = :newImg WHERE id = :id';
+            $statement = $this->pdo->prepare($query);
+
+
+            return $statement->execute([
+                'userId' => $userId,
+                'newImg' => $targetFile,
+            ]);
+        } else {
+            return false;
+        }
     }
 
     public function findUser(): array
@@ -128,6 +152,7 @@ class Connection
                     $_SESSION['user_password'] = $fetch['password'];
                     $_SESSION['user_name'] = $fetch['first_name'];
                     $_SESSION['user_last_name'] = $fetch['last_name'];
+                    $_SESSION['img'] = $fetch['img_profile'];
                     header("location: home.php");
                 } else {
                     echo '<h2 class="flex justify-center">Email ou mot de passe invalide</h2>';
