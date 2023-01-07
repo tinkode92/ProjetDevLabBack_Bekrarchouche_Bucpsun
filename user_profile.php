@@ -44,7 +44,7 @@ if ($_POST) {
     <div class="flex justify-center flex-col py-5 px-6">
         <div class="relative">
             <div class="flex justify-center">
-                <img src="<?php echo $_SESSION['img']?>" alt="image-profile" class= "w-[100px] h-[100px] object-cover rounded-full drop-shadow-xl">
+                <img src="<?php echo $_SESSION['img']?>" alt="image-profile" class= "w-[100px] h-[100px] object-cover rounded-full drop-shadow-xl border">
             </div>
             <form method="post" class="absolute left-1/2 text-center cursor-pointer" enctype="multipart/form-data">
                 <div class="absolute bottom-0 ml-[15px] mt-[5px] bg-white w-[32px] h-[32px] text-center rounded-full text-center leading-8 border">
