@@ -2,6 +2,8 @@
 session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
+$connection = new Connection();
+$imgProfile = $connection->getImg($_SESSION["user_id"]);
 ?>
 
 <!DOCTYPE HTML>

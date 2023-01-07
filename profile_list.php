@@ -18,18 +18,21 @@ require_once 'src/ALBUM.php';
 </head>
 <body>
 <?php require_once "src/template/nav.php"?>
-
+<h1 class="flex justify-center font-semibold text-xl">Page des profils inscrit</h1>
 
 <?php $connection = New Connection();
 $album = $connection->findUser();
 
 foreach ($album as $alb) {
-    var_dump($alb);
+
     ?>
     <div class="flex justify-center py-4">
-        <div>
-            <p class="font-semibold"><?php echo $alb['first_name']?> <?php echo $alb['last_name']?></p>
-            <a class="" href=""></a>
+        <div class="flex gap-x-6 bg-white py-3 px-6 rounded-xl shadow-lg hover:scale-105 transition-all hover:shadow-xl">
+            <img class="h-[125px] w-[125px] object-cover rounded-full border-2" src="<?php echo $alb['img_profile']?>" alt="">
+            <div class="flex flex-col justify-center">
+                <p class="flex items-center font-semibold"><?php echo $alb['first_name']?> <?php echo $alb['last_name']?></p>
+                <a href="">Voir</a>
+            </div>
         </div>
     </div>
 
@@ -39,7 +42,6 @@ foreach ($album as $alb) {
 
 
 <script src="JS/api_query.js"></script>
-<script src="JS/movies.js"></script>
 <script src="JS/script.js"></script>
 </body>
 </html>

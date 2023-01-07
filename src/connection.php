@@ -31,7 +31,7 @@ class Connection
     public function changeImg(int $userId, array $newImg): bool {
 
         $targetDir = "src/assets/img/";
-        $targetFile = $targetDir . basename($newImg["name"]);
+        $targetFile = str_replace(' ','',$targetDir . basename($newImg["name"]));
 
         if (move_uploaded_file($newImg["tmp_name"], $targetFile)) {
 
@@ -208,6 +208,7 @@ class Connection
                     $_SESSION['user_password'] = $fetch['password'];
                     $_SESSION['user_name'] = $fetch['first_name'];
                     $_SESSION['user_last_name'] = $fetch['last_name'];
+                    $_SESSION['img'] = $fetch['img_profile'];
                     header("location: home.php");
                 } else {
                     echo '<h2 class="flex justify-center">Email ou mot de passe invalide</h2>';

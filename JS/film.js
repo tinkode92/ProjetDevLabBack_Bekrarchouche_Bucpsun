@@ -21,7 +21,7 @@ fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key='+api_key+'&languag
     
     let card = document.createElement('div')
     containerMovies.appendChild(card)
-    card.classList = 'w-[1200px] rounded-t-lg rounded-b-lg drop-shadow-xl flex align-center flex-row-reverse justify-end mx-3 gap-x-8'
+    card.classList = 'w-[1200px] rounded-t-lg rounded-b-lg drop-shadow-lg flex align-center flex-row-reverse justify-end mx-3 gap-x-8'
     card.appendChild(info)
     card.id = "card"
     
