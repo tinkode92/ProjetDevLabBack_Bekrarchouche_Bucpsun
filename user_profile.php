@@ -3,6 +3,26 @@ session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
 require_once 'src/ALBUM.php';
+$connection = new Connection();
+$imgProfile = $connection->getImg($_SESSION["user_id"]);
+if ($imgProfile !== null) {
+    $_SESSION['img'] = $imgProfile;
+}
+
+if ($_POST) {
+    $userId = $_SESSION["user_id"];
+    $newImage = $_FILES["img"];
+
+    $connection = new Connection();
+    $result = $connection->changeImg($userId, $newImage);
+
+    if ($result) {
+        echo '<p class="font-semibold absolute bottom-[80%] right-[28%]">L\'image de profil a été mise à jour avec succès !</p>';
+    } else {
+        echo '<p class="font-semibold absolute bottom-[80%] right-[28%]">Une erreur s\'est produite lors de la mise à jour de l\'image de profil.</p>';
+    }
+    header("Refresh: 1");
+}
 
 ?>
 
@@ -24,32 +44,17 @@ require_once 'src/ALBUM.php';
     <div class="flex justify-center flex-col py-5 px-6">
         <div class="relative">
             <div class="flex justify-center">
-                <img src="src/assets/img/<?php echo $_SESSION['img']?>" alt="image-profile" class= "w-[100px] object-cover rounded-full drop-shadow-xl">
+                <img src="<?php echo $_SESSION['img']?>" alt="image-profile" class= "w-[100px] h-[100px] object-cover rounded-full drop-shadow-xl">
             </div>
             <form method="post" class="absolute left-1/2 text-center cursor-pointer" enctype="multipart/form-data">
                 <div class="absolute bottom-0 ml-[15px] mt-[5px] bg-white w-[32px] h-[32px] text-center rounded-full text-center leading-8 border">
-                    <input class="scale-[1] opacity-0 absolute" type="file" id="update_img" name="" accept="png/jpeg/jpg">
+                    <input class="scale-[1] opacity-0 absolute" type="file" id="update_img" name="img" accept="png/jpeg/jpg">
                     <i class="fa fa-camera cursor-pointer"></i>
                 </div>
+                <input class="absolute" type="submit" value="Changer" name="img">
             </form>
-            <button type="submit">Changer</button>
         </div>
-        <?php
-        if ($_POST) {
-            $userId = $_SESSION["user_id"];
-            $newImage = $_FILES["image"];
-            $connection = new Connection();
-            $result = $connection->changeImg($userId,$newImage);
-
-            if ($result) {
-                echo "L'image de profil a été mise à jour avec succès !";
-            } else {
-                echo "Une erreur s'est produite lors de la mise à jour de l'image de profil.";
-            }
-        }
-        ?>
-
-        <div class="flex flex-col my-4">
+        <div class="flex flex-col my-8">
             <h1 class="text-center font-semibold text-xl"><?php echo $_SESSION["user_name"]?> <?php echo $_SESSION["user_last_name"]?></h1>
             <p class="text-center font-semibold text-xl"><?php echo $_SESSION["user_email"]?></p>
         </div>
@@ -76,7 +81,6 @@ require_once 'src/ALBUM.php';
 
         ?>
     </div>
-
 </div>
 
 

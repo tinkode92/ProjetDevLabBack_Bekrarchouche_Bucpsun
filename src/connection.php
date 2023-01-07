@@ -12,7 +12,7 @@ class Connection
     public function insert(User $user): bool
     {
 
-        $defaultImage = "usser.png";
+        $defaultImage = "src/assets/img/usser.png";
 
         $query = 'INSERT INTO user (email, password, first_name, last_name, img_profile)
                   VALUES (:email, :password, :first_name, :last_name, :img_profile)';
@@ -28,24 +28,34 @@ class Connection
         ]);
     }
 
-    public function changeImg(int $userId, string $newImg): bool {
+    public function changeImg(int $userId, array $newImg): bool {
 
         $targetDir = "src/assets/img/";
         $targetFile = $targetDir . basename($newImg["name"]);
 
         if (move_uploaded_file($newImg["tmp_name"], $targetFile)) {
 
-            $query = 'UPDATE user SET img_profile = :newImg WHERE id = :id';
+            $query = 'UPDATE user SET img_profile = :img_profile WHERE id = :id';
             $statement = $this->pdo->prepare($query);
-
-
             return $statement->execute([
-                'userId' => $userId,
-                'newImg' => $targetFile,
+                ':id' => $userId,
+                ':img_profile' => $targetFile,
             ]);
         } else {
             return false;
         }
+    }
+
+    public function getImg(int $userId) {
+        $query = 'SELECT img_profile FROM user WHERE id = :id';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+        $statement->execute();
+        if ($statement->rowCount() > 0) {
+            $fetch = $statement->fetch();
+            return $fetch['img_profile'];
+        }
+        return null;
     }
 
     public function findUser(): array
@@ -198,7 +208,6 @@ class Connection
                     $_SESSION['user_password'] = $fetch['password'];
                     $_SESSION['user_name'] = $fetch['first_name'];
                     $_SESSION['user_last_name'] = $fetch['last_name'];
-                    $_SESSION['img'] = $fetch['img_profile'];
                     header("location: home.php");
                 } else {
                     echo '<h2 class="flex justify-center">Email ou mot de passe invalide</h2>';

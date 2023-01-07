@@ -5,7 +5,7 @@
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Dywiki's</span>
         </a>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto" id="mobile-menu-2">
-            <ul class="flex flex-col p-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul class="flex flex-col p-4 border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                     <a href="./home.php" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-gray-400 hover:text-white md:p-0 dark:text-white" aria-current="page">Accueil</a>
                 </li>
@@ -29,7 +29,7 @@
         <div class="flex items-center">
             <button type="button" class="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 dark:bg-white" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Profile menu</span>
-                <img class="w-8 h-8 rounded-full" src="src/assets/img/<?php echo $_SESSION['img']?>" alt="user photo">
+                <img class="w-8 h-8 rounded-full" src="<?php echo $_SESSION['img']?>" alt="user photo">
             </button>
             <!-- Menu profile -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-0 mt-16 right-0 max-md:mr-4 2xl:mr-6" id="user-dropdown">
