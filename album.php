@@ -72,15 +72,15 @@ if (isset($_POST['submit'])) {
             $alb['status'] = "Privée";
         }
         ?>
-            <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all">
-                <p class="flex items-center text-center">Nom: <?php echo $alb['name']?></p>
-                <p class="flex items-center text-center">Status: <?php echo $alb['status']?></p>
-                <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>"></a>
-                <?php echo '<a class="z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg" href="deleteAlbum.php?id=' . $alb['id'] . '">Delete</a>'; ?>
-            </div>
-        <?php }
+            <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center gap-2 hover:scale-105 transition-all">
+                <p class="flex items-center text-center">Nom: <?= $alb['name']?></p>
+                <p class="flex items-center text-center">Status: <?= $alb['status']?></p>
+                <a class="absolute h-full w-full" href="single_album.php?&name=<?= $alb['name']?>&id=<?= $alb['id']?>"></a>
+                <a class="z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg w-full" href="deleteAlbum.php?id=<?= $alb['id'] ?>">Supprimer</a>
+                <a class="z-10 py-1 text-red bg-blue-300 text-white text-center rounded-t-lg rounded-b-lg p-2 w-full" href="invite.php?album_id=<?= $alb['id'] ?>&name=<?= $alb['name']?>">Ajouter quelqu'un</a>
 
-        ?>
+            </div>
+        <?php } ?>
     </div>
 
 </div>

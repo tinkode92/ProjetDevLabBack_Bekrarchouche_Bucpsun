@@ -9,7 +9,7 @@
 
 DROP TABLE IF EXISTS `album_invites`;
 CREATE TABLE `album_invites` (
-  `id` int unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `from_id` int unsigned NOT NULL,
   `to_id` int unsigned NOT NULL,
   `album_id` int unsigned NOT NULL,
