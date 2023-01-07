@@ -68,10 +68,14 @@ require_once 'src/connection.php';
                 card.appendChild(link)
 
                 let deletee = document.createElement('a');
-                deletee.href = "deleteMovie.php?id=" + <?php echo $mov['id']?>;
-                deletee.classList = "z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg"
-                deletee.innerHTML = "Supprimer"
-                card.appendChild(deletee)
+
+                if (<?php echo $_GET['album_user_id']?> === <?php echo $_SESSION['user_id']?>) {
+                    deletee.href = "deleteMovie.php?id=" + <?php echo $mov['id']?>;
+                    deletee.classList = "z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg"
+                    deletee.innerHTML = "Supprimer"
+                    card.appendChild(deletee)
+                }
+
 
                 if (containerAlbumMovie.children.length > 0) {
                     containerAlbumMovie.removeChild(noFilm);

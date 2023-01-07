@@ -21,17 +21,17 @@ require_once 'src/ALBUM.php';
 <h1 class="flex justify-center font-semibold text-xl">Page des profils inscrit</h1>
 
 <?php $connection = New Connection();
-$album = $connection->findUser();
+$user = $connection->findUser();
 
-foreach ($album as $alb) {
+foreach ($user as $usr) {
 
     ?>
     <div class="flex justify-center py-4">
         <div class="flex gap-x-6 bg-white py-3 px-6 rounded-xl shadow-lg hover:scale-105 transition-all hover:shadow-xl">
-            <img class="h-[125px] w-[125px] object-cover rounded-full border-2" src="<?php echo $alb['img_profile']?>" alt="">
+            <img class="h-[125px] w-[125px] object-cover rounded-full border-2" src="<?php echo $usr['img_profile']?>" alt="">
             <div class="flex flex-col justify-center">
-                <p class="flex items-center font-semibold"><?php echo $alb['first_name']?> <?php echo $alb['last_name']?></p>
-                <a href="">Voir</a>
+                <p class="flex items-center font-semibold"><?php echo $usr['first_name']?> <?php echo $usr['last_name']?></p>
+                <a href="single_user.php?id=<?php echo $usr['id']?>">Voir</a>
             </div>
         </div>
     </div>

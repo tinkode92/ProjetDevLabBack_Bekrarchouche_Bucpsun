@@ -65,8 +65,19 @@ class Connection
         $stmt = $this->pdo->prepare($query);
         $stmt->execute(array());
 
-        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getUser($id): array
+    {
+        $query = "SELECT * FROM user WHERE id = ?";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(array($id));
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function InsertAlbum(Album $album): bool
     {
