@@ -50,7 +50,7 @@ if (!isset($_SESSION["user_id"])) {
 
                 let card = document.createElement('div')
                 containerAlbumMovie.appendChild(card)
-                card.classList = 'w-[250px] bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all'
+                card.classList = 'w-[250px] bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-md flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_2px_5px_#fefae0]'
 
                 const img = document.createElement('img')
                 img.classList = 'w-[250px] h-[350px] object-cover rounded-t-lg';

@@ -53,7 +53,7 @@ foreach ($user_profile as $usr) {
             }
             if ($alb['status'] === "Public") {
                 ?>
-                <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all">
+                <div class="flex justify-center py-4 px-2 bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-lg flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_2px_3px_#fefae0]">
                     <p class="flex items-center justify-center font-semibold"><?php echo $alb['name']?></p>
                     <p class="flex items-center justify-center">Album <?php echo $alb['status']?></p>
                     <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>&album_user_id=<?php echo $alb['user_id']?>"></a>
@@ -61,7 +61,7 @@ foreach ($user_profile as $usr) {
             <?php }
             else if ($alb['status'] === "Privée" && $alb['user_id'] === $_SESSION["user_id"]) {
                 ?>
-                <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center hover:scale-105 transition-all">
+                <div class="flex justify-center py-4 px-2 bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-lg flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_2px_3px_#fefae0]">
                     <p class="flex items-center justify-center font-semibold"><?php echo $alb['name']?></p>
                     <p class="flex items-center justify-center">Album <?php echo $alb['status']?></p>
                     <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>&album_user_id=<?php echo $alb['user_id']?>"></a>
