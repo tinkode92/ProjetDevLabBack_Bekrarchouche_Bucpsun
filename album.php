@@ -66,7 +66,9 @@ if (isset($_POST['submit'])) {
         $album = $connection->findAlbum($_SESSION["user_id"]);
 
         foreach ($album as $alb) {
-        if ($alb['status'] === 0) {
+        if ($alb['shared'] === 1) {
+            $alb['status'] = "Partagé";
+        } else if ($alb['status'] === 0) {
             $alb['status'] = "Public";
         } else {
             $alb['status'] = "Privée";

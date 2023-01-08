@@ -109,7 +109,12 @@ class Connection
     {
         // sélectionner à la fois les albums possédés par l'utilisateurs et ceux chargés avec lui
         // https://fr.m.wikipedia.org/wiki/Fichier:SQL_Joins.svg
-        $stmt = $this->pdo->prepare("SELECT A.* FROM album A LEFT JOIN album_shares S ON A.id = S.album_id WHERE A.user_id = ? OR S.user_id = ?");
+        $stmt = $this->pdo->prepare(
+            "WITH S AS (SELECT *, 1 AS shared FROM album_shares) 
+            SELECT A.*, S.shared FROM album A 
+            LEFT JOIN S ON A.id = S.album_id 
+            WHERE A.user_id = ? OR S.user_id = ?"
+        );
         $stmt->execute(array($id, $id));
 
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
