@@ -69,8 +69,8 @@ require_once 'src/connection.php';
 
                 let deletee = document.createElement('a');
 
-                if (<?php echo $_GET['album_user_id']?> === <?php echo $_SESSION['user_id']?>) {
-                    deletee.href = "deleteMovie.php?id=" + <?php echo $mov['id']?>;
+                if (<?= $_GET['album_user_id']?> === <?= $_SESSION['user_id']?>) {
+                    deletee.href = "deleteMovie.php?id=" + <?= $mov['id']?>;
                     deletee.classList = "z-10 py-1 text-red bg-red-300 text-white text-center rounded-t-lg rounded-b-lg"
                     deletee.innerHTML = "Supprimer"
                     card.appendChild(deletee)
