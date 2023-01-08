@@ -29,6 +29,13 @@ $imgProfile = $connection->getImg($_SESSION["user_id"]);
     <!--NAVBAR ELEMENT IN TEMPLATE FOLDER-->
     <?php require_once "src/template/nav.php"?>
 
+    <img class="absolute floating w-[100px] top-[10%] left-[15%]" src="src/assets/img/popcorn.png">
+    <img class="absolute floating w-[150px] top-[55%] left-[10%]" src="src/assets/img/glasses.png">
+    <img class="absolute floating w-[150px] top-[15%] left-[80%]" src="src/assets/img/clap.png">
+    <img class="absolute floating w-[150px] top-[65%] left-[30%]" src="src/assets/img/tickets.png">
+    <img class="absolute floating w-[100px] top-[60%] left-[60%]" src="src/assets/img/cup.png">
+    <img class="absolute floating w-[100px] top-[54%] left-[85%]" src="src/assets/img/camera.png">
+
     <div class="wrapper my-[150px] flex justify-items-center items-center row w-full h-full flex-col gap-5">
         <h2 class="text-4xl">Bienvenu sur Dywiki's !</h1>
         <h3 class="text-2xl">Regardez tous vos films et séries préférés en illimités !</h3>
