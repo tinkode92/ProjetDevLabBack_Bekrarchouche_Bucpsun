@@ -28,7 +28,7 @@ foreach ($user_profile as $usr) {
 <div class="flex justify-center mt-16">
     <div class="flex justify-center flex-col py-5 px-6">
         <div class="flex justify-center">
-            <img src="<?php echo $usr['img_profile']?>" alt="image-profile" class= "w-[100px] h-[100px] object-cover rounded-full drop-shadow-xl border-2 border-rose-50">
+            <img src="<?php echo $usr['img_profile']?>" alt="image-profile" class= "w-[125px] h-[125px] object-cover rounded-full drop-shadow-xl border-2 border-rose-50">
         </div>
         <div class="flex flex-col my-8">
             <h1 class="text-center font-semibold text-xl"><?php echo $usr['first_name']?> <?php echo $usr['last_name']?></h1>

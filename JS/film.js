@@ -72,7 +72,7 @@ fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key='+api_key+'&languag
     
     if(data["vote_average"]) {
         note.innerHTML = "Recommandé à "+ Math.floor(data["vote_average"]*10) + "%"
-        note.classList = "py-1 font-semibold"
+        note.classList = "py-1 font-semibold text-[#fefae0]"
         console.log(data["vote_average"])
     }
     
@@ -89,7 +89,7 @@ fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key='+api_key+'&languag
     
     if(data["tagline"]) {
         tagline.innerHTML = data["tagline"]
-        tagline.classList = "py-1 text-gray-800 italic"
+        tagline.classList = "py-1 text-gray-800 italic text-[#fefae0]"
         tagline.appendChild(tagline)
     }
     

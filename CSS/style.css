@@ -9,5 +9,13 @@ button {
 }
 
 body {
-    background-color: bisque ;
+    background-color: #222530 ;
+}
+
+p {
+    color: #fefae0;
+}
+
+h1 {
+    color: #fefae0;
 }

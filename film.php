@@ -160,8 +160,18 @@ if (!isset($_SESSION["user_id"])) {
 
             if(data["vote_average"]) {
                 note.innerHTML = "Recommandé à "+ Math.floor(data["vote_average"]*10) + "%"
-                note.classList = "py-1 font-semibold"
+                note.classList = "py-1 font-semibold text-[#fefae0]"
                 console.log(data["vote_average"])
+            }
+
+            if(data["vote_average"] >= 7.5) {
+                note.classList = "py-1 font-semibold text-green-500"
+            } else if (data["vote_average"] <= 7.5) {
+                note.classList = "py-1 font-semibold text-orange-500"
+            }
+            if (data["vote_average"] <= 5.0) {
+                note.classList = "py-1 font-semibold text-rose-800"
+
             }
 
             if(data["overview"] === "") {
@@ -177,7 +187,7 @@ if (!isset($_SESSION["user_id"])) {
 
             if(data["tagline"]) {
                 tagline.innerHTML = data["tagline"]
-                tagline.classList = "py-1 text-gray-800 italic"
+                tagline.classList = "py-1 text-gray-800 italic text-[#fefae0]"
                 tagline.appendChild(tagline)
             }
 
