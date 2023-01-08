@@ -24,10 +24,16 @@ $imgProfile = $connection->getImg($_SESSION["user_id"]);
     <title>Accueil Dywiki's</title>
 
 </head>
-<body>
+<body class="h-[100vh]">
 
     <!--NAVBAR ELEMENT IN TEMPLATE FOLDER-->
     <?php require_once "src/template/nav.php"?>
+
+    <div class="wrapper my-[150px] flex justify-items-center items-center row w-full h-full flex-col gap-5">
+        <h2 class="text-4xl">Bienvenu sur Dywiki's !</h1>
+        <h3 class="text-2xl">Regardez tous vos films et séries préférés en illimités !</h3>
+        <a class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" href="categorie.php">C'est parti !</button>
+    </div>
 
     <script src="JS/script.js"></script>
 
