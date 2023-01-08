@@ -10,7 +10,8 @@ function getMoviesForGenre(genre, pagination) {
         .then(response => response.json())
 }
 
-function getMoviesForSearch(search, pagination) {
-    return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}&page=${pagination}` + '&language=fr-FR')
-        .then(response => response.json())
+function getMoviesForSearch(search, pagination) {       
+    return axios
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${search}&page=${pagination}&language=fr-FR`)
+        .then(res => res.data);
 }

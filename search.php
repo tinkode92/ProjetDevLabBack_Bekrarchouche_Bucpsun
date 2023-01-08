@@ -42,6 +42,7 @@ require_once 'src/connection.php';
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="JS/api_query.js"></script>
     <script src="JS/movies.js"></script>
     <script src="JS/search.js"></script>
