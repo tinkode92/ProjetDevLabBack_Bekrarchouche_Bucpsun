@@ -28,10 +28,11 @@ class Connection
         ]);
     }
 
-    public function changeImg(int $userId, array $newImg): bool {
+    public function changeImg(int $userId, array $newImg): bool
+    {
 
         $targetDir = "src/assets/img/";
-        $targetFile = str_replace(' ','',$targetDir . basename($newImg["name"]));
+        $targetFile = str_replace(' ', '', $targetDir . basename($newImg["name"]));
 
         if (move_uploaded_file($newImg["tmp_name"], $targetFile)) {
 
@@ -46,7 +47,8 @@ class Connection
         }
     }
 
-    public function getImg(int $userId) {
+    public function getImg(int $userId)
+    {
         $query = 'SELECT img_profile FROM user WHERE id = :id';
         $statement = $this->pdo->prepare($query);
         $statement->bindParam(':id', $userId, PDO::PARAM_INT);
@@ -130,21 +132,23 @@ class Connection
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function invite($album_id, $user_mail): string | null
+    public function invite($album_id, $user_mail): string|null
     {
         // verifier que l'album existe bien
         $stmt = $this->pdo->prepare("SELECT COUNT(id) FROM album WHERE id=? AND user_id=?");
         $stmt->execute(array($album_id, $_SESSION["user_id"]));
-        
+
         // l'utilisateur ne possède pas d'album avec cette id
-        if ($stmt->rowCount() < 1) die("401 Non authorisé");
+        if ($stmt->rowCount() < 1)
+            die("401 Non authorisé");
 
         // chercher l'invité
         $stmt = $this->pdo->prepare("SELECT id FROM user WHERE email=?");
         $stmt->execute(array($user_mail));
 
         $to_id = $stmt->fetchColumn(0);
-        if (!$to_id) return null;
+        if (!$to_id)
+            return null;
 
         // creer l'invitation
         $query = "INSERT INTO album_invites (from_id, to_id, album_id) VALUES (?, ?, ?)";
@@ -164,9 +168,10 @@ class Connection
         $stmt = $this->pdo->prepare("SELECT album_id FROM album_invites WHERE id=? AND to_id=?");
         $stmt->execute(array($id, $_SESSION["user_id"]));
         $album_id = $stmt->fetchColumn(0);
-        
+
         // invitation non destiné à l'utilisateur
-        if (!$album_id) die("401 Non authorisé");
+        if (!$album_id)
+            die("401 Non authorisé");
 
         // ajouter l'album dans les albums partagés
         $stmt = $this->pdo->prepare("INSERT INTO album_shares (user_id, album_id) VALUES (?, ?)");
@@ -202,6 +207,14 @@ class Connection
         return $statement->execute([
             'id' => $id,
         ]);
+    }
+
+
+    public function leaveAlbum(int $id): bool
+    {
+        $query = 'DELETE FROM album_shares WHERE album_id = ? AND user_id = ?';
+        $statement = $this->pdo->prepare($query);
+        return $statement->execute(array($id, $_SESSION['user_id']));
     }
 
     public function connect()
