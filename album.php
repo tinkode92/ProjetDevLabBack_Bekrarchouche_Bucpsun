@@ -3,6 +3,10 @@ session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
 require_once 'src/ALBUM.php';
+if (!isset($_SESSION["user_id"])) {
+    header("location: login.php");
+}
+
 if (isset($_POST['submit'])) {
     $album = new Album(
         $_POST['album_name'],

@@ -2,8 +2,14 @@
 session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
+
+if (!isset($_SESSION["user_id"])) {
+    header("location: login.php");
+}
+
 $connection = new Connection();
 $imgProfile = $connection->getImg($_SESSION["user_id"]);
+
 ?>
 
 <!DOCTYPE HTML>

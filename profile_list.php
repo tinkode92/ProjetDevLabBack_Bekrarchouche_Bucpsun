@@ -31,7 +31,7 @@ foreach ($user as $usr) {
             <img class="h-[125px] w-[125px] object-cover rounded-full border-2" src="<?php echo $usr['img_profile']?>" alt="">
             <div class="flex flex-col justify-center">
                 <p class="flex items-center font-semibold"><?php echo $usr['first_name']?> <?php echo $usr['last_name']?></p>
-                <a href="single_user.php?id=<?php echo $usr['id']?>">Voir</a>
+                <a href="single_user.php?id=<?php echo $usr['id']?>&name=<?php echo $usr['first_name']?>">Voir</a>
             </div>
         </div>
     </div>

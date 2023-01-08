@@ -2,6 +2,9 @@
 session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
+if (!isset($_SESSION["user_id"])) {
+    header("location: login.php");
+}
 ?>
 <!doctype html>
 <html lang="en">
