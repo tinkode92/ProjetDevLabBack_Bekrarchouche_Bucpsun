@@ -19,3 +19,12 @@ triggerEl2.addEventListener("click", function () {
         targetEl2.style.display = "none";
     }
 });
+
+let nolike = document.querySelector(".no_like")
+
+if (nolike.children.length <= 0) {
+    let message = document.createElement("p")
+    message.innerHTML = "Pas d'album liké pour le moment"
+    message.classList = "flex justify-center font-semibold text-lg"
+    nolike.appendChild(message)
+}

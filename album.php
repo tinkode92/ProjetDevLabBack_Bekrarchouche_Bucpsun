@@ -44,24 +44,27 @@ if (isset($_POST['submit'])) {
 <body>
 <?php require_once"src/template/nav.php"?>
 
-<div class="flex flex-wrap">
-    <form class="flex flex-col p-4 place-content-center" method="post">
-        <input type="text" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md" name="album_name" placeholder="Nom de l'album">
-        <div class="status flex justify-around py-1" id="status">
+<div class="flex flex-col flex-wrap">
+    <div class="flex justify-center">
+        <form class="flex flex-col p-4 place-content-center w-[300px]" method="post">
+            <input type="text" class="p-1.5 border-gray-300 rounded-full bg-[#F3F3F3] my-2 drop-shadow-md focus:bg-gray-900 transition-all focus:text-[#fefae0]" name="album_name" placeholder="Nom de l'album">
+            <div class="status flex justify-around py-1" id="status">
 
-            <div class="flex gap-x-2">
-                <label for="public">Public</label>
-                <input type="radio" name="status" value="0" id="public" checked>
+                <div class="flex gap-x-2">
+                    <label for="public" class="text-[#fefae0]">Public</label>
+                    <input type="radio" name="status" value="0" id="public" checked>
+                </div>
+
+                <div class="flex gap-x-2">
+                    <label for="private" class="text-[#fefae0]">Privée</label>
+                    <input type="radio" name="status" value="1" id="private">
+                </div>
+
             </div>
+            <button name="submit" type="submit" class="bg-[#F3F3F3] drop-shadow-md rounded-full p-1 mt-2 transition-all hover:bg-gray-900 hover:text-[#fefae0]">Créer l'album</button>
+        </form>
+    </div>
 
-            <div class="flex gap-x-2">
-                <label for="private">Privée</label>
-                <input type="radio" name="status" value="1" id="private">
-            </div>
-
-        </div>
-        <button name="submit" type="submit" class="bg-[#F3F3F3] drop-shadow-md rounded-full p-1 mt-2">Créer l'album</button>
-    </form>
     <?php
 
     ?>
@@ -78,7 +81,7 @@ if (isset($_POST['submit'])) {
             $alb['status'] = "Privée";
         }
         ?>
-            <div class="flex justify-center py-4 px-2 bg-white rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center gap-2 hover:scale-105 transition-all">
+            <div class="flex justify-center py-4 px-2 bg-[#003049] w-[200px] rounded-t-lg rounded-b-lg drop-shadow-xl flex flex-col align-center gap-2 hover:scale-105 transition-all">
                 <p class="flex items-center text-center">Nom: <?= $alb['name']?></p>
                 <p class="flex items-center text-center">Status: <?= $alb['status']?></p>
                 <a class="absolute h-full w-full" href="single_album.php?&name=<?= $alb['name']?>&id=<?= $alb['id']?>&album_user_id=<?= $alb['user_id']?>"></a>

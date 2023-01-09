@@ -3,7 +3,7 @@ function displayMovies(movies) {
     movies.forEach(movie => {
         let card = document.createElement('div')
             containerMovies.appendChild(card)
-            card.classList = 'w-[250px] bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-md flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_2px_5px_#fefae0]'
+            card.classList = 'w-[250px] bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-md flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_0_4px_#fefae0]'
 
         const img = document.createElement('img')
             img.classList = 'w-[250px] h-[350px] object-cover rounded-t-lg';

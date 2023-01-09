@@ -107,6 +107,39 @@ class Connection
         ]);
     }
 
+    public function AlbumLiked($user_id,$album_id): bool
+    {
+        $query = 'INSERT INTO album_liked (user_id, album_id)
+                  VALUES (?, ?)';
+
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            $user_id,
+            $album_id,
+        ]);
+    }
+
+    public function AlbumDisliked($user_id, $album_id): bool
+    {
+        $query = 'DELETE FROM album_liked WHERE user_id = ? AND album_id = ?';
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            $user_id,
+            $album_id,
+        ]);
+    }
+
+    public function findAlbumLiked($user_id) {
+        $query = 'SELECT a.id, a.name, a.status, a.user_id FROM album_liked al 
+                INNER JOIN album a ON al.album_id = a.id
+                WHERE al.user_id = ?';
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll();
+    }
+
+
     public function findAlbum($id): array
     {
         // sélectionner à la fois les albums possédés par l'utilisateurs et ceux chargés avec lui

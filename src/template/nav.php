@@ -1,22 +1,22 @@
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+<nav class="border-gray-200 px-2 sm:px-4 py-2.5 bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="home.php" class="flex items-center">
             <img src="src/assets/img/LOGO.png" class="h-12 mr-3 sm:h-9" alt="Dywiki's Logo" />
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Dywiki's</span>
         </a>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto" id="mobile-menu-2">
-            <ul class="flex flex-col p-4 border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul class="flex flex-col p-4 border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:border-gray-700">
                 <li>
-                    <a href="./home.php" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-gray-400 hover:text-white md:p-0 dark:text-white" aria-current="page">Accueil</a>
+                    <a href="./home.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 max-md:border-b-[1px] max-md:border-t-[1px]" aria-current="page">Accueil</a>
                 </li>
                 <li>
-                    <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">À propos</a>
+                    <a href="#" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 max-md:border-b-[1px]">À propos</a>
                 </li>
                 <li>
-                    <a href="./profile_list.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Profil</a>
+                    <a href="./profile_list.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 max-md:border-b-[1px]">Profil</a>
                 </li>
                 <li>
-                    <a href="./categorie.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Categories</a>
+                    <a href="./categorie.php" class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 max-md:border-b-[1px]">Categories</a>
                 </li>
             </ul>
         </div>

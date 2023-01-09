@@ -209,9 +209,9 @@ if ($_POST) {
 
 
         if ($result) {
-            echo '<h2 class="text-center font-semibold text-xl">Film ajouté à votre album !</h2>';
+            echo '<h2 class="text-center font-semibold text-xl text-[#fefae0]">Film ajouté à votre album !</h2>';
         } else {
-            echo '<h2 class="text-center font-semibold text-xl">Internal error 🥲</h2>';
+            echo '<h2 class="text-center font-semibold text-xl text-[#fefae0]">Internal error 🥲</h2>';
         }
     }
     exit();

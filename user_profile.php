@@ -3,28 +3,34 @@ session_start();
 require_once 'src/user.php';
 require_once 'src/connection.php';
 require_once 'src/ALBUM.php';
+
+// on vérifie que la session possède un user_id, si ce n'est pas le cas, alors on le renvoie sur la page login
 if (!isset($_SESSION["user_id"])) {
     header("location: login.php");
 }
 
+// on utilise la fonction getImg qui récupère le lien de l'image depuis la bdd afin de directement mettre à jour la photo
 $connection = new Connection();
 $imgProfile = $connection->getImg($_SESSION["user_id"]);
 if ($imgProfile !== null) {
     $_SESSION['img'] = $imgProfile;
 }
-if ($_POST) {
+// on utilise la fonction pour changer de photo de profil
+if (isset($_POST["change_img"])) {
     $userId = $_SESSION["user_id"];
-    $newImage = $_FILES["img"];
+    $newImage = $_FILES["change_img"];
 
     $connection = new Connection();
     $result = $connection->changeImg($userId, $newImage);
 
-    if ($result) {
-        echo '<p class="font-semibold absolute bottom-[80%] right-[28%]">L\'image de profil a été mise à jour avec succès !</p>';
-    } else {
-        echo '<p class="font-semibold absolute bottom-[80%] right-[28%]">Une erreur s\'est produite lors de la mise à jour de l\'image de profil.</p>';
-    }
-    header("Refresh: 1");
+    header("Location: user_profile.php");
+}
+// on utilise la fonction pour dislike un album
+if (isset($_POST['dislike'])) {
+    $connection = new Connection();
+    $connection->AlbumDisliked($_SESSION['user_id'], $_POST['album_id']);
+
+    header("Location: user_profile.php");
 }
 
 ?>
@@ -51,10 +57,10 @@ if ($_POST) {
             </div>
             <form method="post" class="absolute left-1/2 text-center cursor-pointer" enctype="multipart/form-data">
                 <div class="absolute bottom-0 ml-[15px] mt-[5px] bg-white w-[32px] h-[32px] text-center rounded-full text-center leading-8 border">
-                    <input class="scale-[1] opacity-0 absolute" type="file" id="update_img" name="img" accept="png/jpeg/jpg">
+                    <input class="scale-[1] opacity-0 absolute" type="file" id="update_img" name="change_img" accept="png/jpeg/jpg">
                     <i class="fa fa-camera cursor-pointer"></i>
                 </div>
-                <input class="absolute text-[#fefae0] py-1 px-2 my-1 bg-[#003049] rounded-lg" type="submit" value="Changer" name="img">
+                <input class="absolute text-[#fefae0] py-1 px-2 my-1 bg-[#003049] rounded-lg" type="submit" value="Changer" name="change_img">
             </form>
         </div>
         <div class="flex flex-col my-10">
@@ -75,7 +81,7 @@ if ($_POST) {
                 $alb['status'] = "Privée";
             }
             ?>
-            <div class="flex justify-center py-4 px-2 bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-lg flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_2px_3px_#fefae0]">
+            <div class="flex justify-center w-full py-4 px-2 bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-lg flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_0_3px_#fefae0]">
                 <p class="flex items-center justify-center font-semibold"><?php echo $alb['name']?></p>
                 <p class="flex items-center justify-center">Album <?php echo $alb['status']?></p>
                 <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>&album_user_id=<?php echo $alb['user_id']?>"></a>
@@ -86,6 +92,37 @@ if ($_POST) {
     </div>
 </div>
 
+<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0]">Les albums likés</h2>
+<div class="flex justify-center py-6">
+    <div class="flex flex-col justify-center gap-y-4 mx-6 w-[450px] no_like">
+        <?php $connection = New Connection();
+        $album_liked = $connection->findAlbumLiked($_SESSION["user_id"]);
+
+        foreach ($album_liked as $alb) {
+            $album = $connection->findAlbum($alb['id']);
+            if ($alb['status'] === 0) {
+                $alb['status'] = "Public";
+            } else {
+                $alb['status'] = "Privée";
+            }
+            if ($alb['status'] === "Public") {
+                ?>
+                <form class="flex gap-x-2" method="post">
+                    <div class="flex justify-center w-full py-4 px-2 bg-[#003049] rounded-t-lg rounded-b-lg drop-shadow-lg flex flex-col align-center hover:scale-105 transition-all hover:drop-shadow-[0_0_3px_#fefae0]">
+                        <p class="flex items-center justify-center font-semibold"><?php echo $alb['name']?></p>
+                        <p class="flex items-center justify-center">Album <?php echo $alb['status']?></p>
+                        <a class="absolute h-full w-full" href="single_album.php?&name=<?php echo $alb['name']?>&id=<?php echo $alb['id']?>&album_user_id=<?php echo $alb['user_id']?>"></a>
+                    </div>
+                    <input type="hidden" name="album_id" value="<?php echo $alb['id'] ?>">
+                    <input type="submit" value="-" class="text-[#fefae0] text-2xl cursor-pointer hover:translate-x-2 transition-all rounded-full bg-[#003049] my-2 px-1" name="dislike">
+                </form>
+            <?php }
+        }
+
+
+        ?>
+    </div>
+</div>
 
 
 <script src="JS/api_query.js"></script>
