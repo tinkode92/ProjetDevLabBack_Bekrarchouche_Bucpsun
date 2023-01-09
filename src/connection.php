@@ -19,9 +19,11 @@ class Connection
 
         $statement = $this->pdo->prepare($query);
 
+        $hashedPassword = password_hash($user->password, PASSWORD_BCRYPT);
+
         return $statement->execute([
             'email' => $user->email,
-            'password' => md5($user->password),
+            'password' => $hashedPassword,
             'first_name' => $user->firstName,
             'last_name' => $user->lastName,
             'img_profile' => $defaultImage,
@@ -107,7 +109,7 @@ class Connection
         ]);
     }
 
-    public function AlbumLiked($user_id,$album_id): bool
+    public function AlbumLiked($user_id, $album_id): bool
     {
         $query = 'INSERT INTO album_liked (user_id, album_id)
                   VALUES (?, ?)';
@@ -129,7 +131,8 @@ class Connection
         ]);
     }
 
-    public function findAlbumLiked($user_id) {
+    public function findAlbumLiked($user_id)
+    {
         $query = 'SELECT a.id, a.name, a.status, a.user_id FROM album_liked al 
                 INNER JOIN album a ON al.album_id = a.id
                 WHERE al.user_id = ?';
@@ -252,19 +255,18 @@ class Connection
 
     public function connect()
     {
-
         $connection = new Connection();
         $bdd = $connection->pdo;
         if (isset($_POST['submit'])) {
             if ($_POST['email'] != "" || $_POST['password'] != "") {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-                $sql = "SELECT * FROM user WHERE email=? AND password=? ";
+                $sql = "SELECT * FROM user WHERE email=?";
                 $query = $bdd->prepare($sql);
-                $query->execute(array($email, md5($password)));
+                $query->execute([$email]);
                 $row = $query->rowCount();
                 $fetch = $query->fetch();
-                if ($row > 0) {
+                if ($row > 0 && password_verify($password, $fetch['password'])) {
                     $_SESSION['user_id'] = $fetch['id'];
                     $_SESSION['user_email'] = $fetch['email'];
                     $_SESSION['user_password'] = $fetch['password'];
@@ -273,11 +275,11 @@ class Connection
                     $_SESSION['img'] = $fetch['img_profile'];
                     header("location: home.php");
                 } else {
-                    echo '<h2 class="flex justify-center">Email ou mot de passe invalide</h2>';
+                    echo '<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0] mt-[275px]">Email ou mot de passe invalide</h2>';
                     header("Refresh: 3");
                 }
             } else {
-                echo '<h2 class="flex justify-center">Veuillez entrer vos informations dans le champs ci-dessus</h2>';
+                echo '<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0] mt-[275px]">Veuillez entrer vos informations dans le champs ci-dessus</h2>';
                 header("Refresh: 3");
             }
         }

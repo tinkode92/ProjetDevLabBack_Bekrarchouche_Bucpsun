@@ -45,12 +45,12 @@
 
 
             if ($result) {
-                echo '<h2 class="flex justify-center">Vous êtes inscrit !</h2>';
+                echo '<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0] mt-[200px]">Vous êtes inscrit !</h2>';
             } else {
-                echo '<h2 class="flex justify-center">Erreur interne 🥲</h2>';
+                echo '<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0] mt-[200px]">Erreur interne 🥲</h2>';
             }
         } else {
-            echo '<h2 class="flex justify-center">Il manque des informations OU le mot passe confirmé est différent de celui entrer</h2>';
+            echo '<h2 class="flex justify-center font-semibold text-xl mt-4 text-[#fefae0] mt-[200px]">Il manque des informations OU le mot passe confirmé est différent de celui entrer</h2>';
         }
 
         header('Refresh: 3, index.php');
