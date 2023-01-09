@@ -38,8 +38,8 @@ $imgProfile = $connection->getImg($_SESSION["user_id"]);
 
     <div class="wrapper my-[150px] flex justify-items-center items-center row w-full h-full flex-col gap-5 z-10">
         <h1 class="text-4xl text-[#fefae0]">Bienvenu <?php echo $_SESSION["user_name"]?> sur Dywiki's !</h1>
-        <h3 class="text-2xl text-[#fefae0]">Renseigne toi sur l'actualitées des films et série !</h3>
-        <a class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" href="categorie.php">C'est parti !</a>
+        <h3 class="text-2xl text-[#fefae0]">Renseigne toi sur l'actualitées des films et séries !</h3>
+        <a class="text-xl hover:bg-blue-400 text-white font-bold py-3 px-5 border-2 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150" href="categorie.php">C'est parti !</a>
     </div>
 
     <script src="JS/script.js"></script>

@@ -2,7 +2,7 @@ getGenres().then(data =>  {
     for (let r of data.genres) {
         let button = document.createElement('button');
             button.innerHTML = r['name'];
-            button.classList = 'bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded ease-in-out duration-150';
+            button.classList = 'text-md hover:bg-blue-400 text-white font-bold py-3 px-5 border-2 border-blue-700 hover:border-blue-500 rounded hover:translate-y-1 ease-in-out duration-150';
 
         button.addEventListener('click', ()=> {
             displayMoviesForGenre(r['id'])
