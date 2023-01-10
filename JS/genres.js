@@ -31,6 +31,15 @@ let pagination = 1
 let apres = 2
 let lastGenre;
 
+if(containerMovies.innerHTML.trim() === "") {
+    let msg = document.createElement('p')
+    msg.innerHTML = 'Sélectionner une catégorie !'
+    msg.classList = "text-2xl"
+    containerMovies.appendChild(msg)
+}
+
+
+
 PaginationNext.addEventListener('click', () => {
     pagination++
     avant++
